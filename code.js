@@ -15,7 +15,7 @@ function calculate_winner() {
     let count = wheel_entries.length;
     let angle = current_angle % (2 * Math.PI);
     let segment = 2 * Math.PI / count;
-    let winner = Math.floor(angle / segment);
+    let winner = count - Math.floor(angle / segment) - 1;
     return winner;
 }
 
@@ -59,7 +59,7 @@ function draw_wheel() {
         for (let i = 0; i < count; i++) {
             entry = wheel_entries[i]
             ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, 2 * Math.PI * (i - 1) / count + current_angle, 2 * Math.PI * (i) / count + current_angle, false);
+            ctx.arc(centerX, centerY, radius, 2 * Math.PI * (i) / count + current_angle, 2 * Math.PI * (i + 1) / count + current_angle, false);
             if (count != 1) {
                 ctx.lineTo(centerX, centerY);
             }
@@ -72,7 +72,7 @@ function draw_wheel() {
             {
                 ctx.save();
                 ctx.translate(centerX, centerY);
-                ctx.rotate(2 * Math.PI * (i - 0.5) / count + current_angle);
+                ctx.rotate(2 * Math.PI * (i + 0.5) / count + current_angle);
                 ctx.textAlign = "right";
                 ctx.fillStyle = "white";
                 ctx.font = "40px Arial";
