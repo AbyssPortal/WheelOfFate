@@ -64,7 +64,7 @@ function draw_wheel() {
                 ctx.lineTo(centerX, centerY);
             }
             ctx.closePath();
-            if (i == count - 1 && i % colors.length == 0) {
+            if (count > 1 && i == count - 1 && i % colors.length == 0) {
                 ctx.fillStyle = colors[(i - 2) % colors.length]
             } else {
                 ctx.fillStyle = colors[i % colors.length];
