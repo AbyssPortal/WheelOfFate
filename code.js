@@ -64,7 +64,12 @@ function draw_wheel() {
                 ctx.lineTo(centerX, centerY);
             }
             ctx.closePath();
-            ctx.fillStyle = colors[i % colors.length];
+            if (i == count - 1 && i % colors.length == 0) {
+                ctx.fillStyle = colors[(i - 2) % colors.length]
+            } else {
+                ctx.fillStyle = colors[i % colors.length];
+
+            }
             ctx.fill();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'black';
@@ -76,7 +81,7 @@ function draw_wheel() {
                 ctx.textAlign = "right";
                 ctx.fillStyle = "white";
                 ctx.font = "40px Arial";
-                ctx.fillText(entry, radius - 10, 0, radius - 10);
+                ctx.fillText(entry, radius - 10, 10, radius - 20);
                 ctx.stroke()
                 ctx.restore();
 
