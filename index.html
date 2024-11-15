@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<audio id="clickSound" src="click.ogg"></audio>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel of Rigged</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            position: relative;
+        }
+
+        #wheelCanvas {
+
+            position: absolute;
+            right: 50%
+        }
+
+        #list {
+            position: absolute;
+            right: 20px;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Wheel of Fate</h1>
+    <h2> the winner is: <a id="winner"></a></h2>
+    <div class="container">
+        <canvas id="wheelCanvas" width="500" height="500"></canvas>
+        <textarea id="list" rows="20" cols="50">heads&#10;tails</textarea>
+    </div>
+    <script>
+        document.getElementById('wheelCanvas').onclick = function () {
+
+            if (current_speed > 0) {
+                return;
+            }
+            current_speed = rig_speed(Math.random() * Math.PI * 2, 10)
+        };
+        document.getElementById('wheelCanvas').oncontextmenu = function (event) {
+            event.preventDefault();
+            const rect = wheelCanvas.getBoundingClientRect();
+            const x = event.clientX - rect.left - rect.width / 2;
+            const y = event.clientY - rect.top - rect.height / 2;
+            const angle = Math.atan2(y, x);
+            console.log('Mouse angle: ', angle);
+
+            if (current_speed > 0) {
+                return;
+            }
+            current_speed = rig_speed(current_angle - angle, 10)
+        };
+    </script>
+    <script src="code.js"></script>
+    <script>
+        document.getElementById('list').oninput = function () {
+            wheel_entries = this.value.split('\n').filter(function (entry) {
+                return entry.trim() !== '';
+            });
+            console.log(wheel_entries)
+            draw_wheel();
+        };
+    </script>
+</body>
+
+</html>
