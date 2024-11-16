@@ -112,8 +112,9 @@ function update_wheel() {
     var frame_time = (thisLoop - lastLoop) / 1000;
     lastLoop = thisLoop;
     if (current_speed > 0) {
+        current_speed -= friction_force * frame_time * 0.5;
         current_angle += current_speed * frame_time;
-        current_speed -= friction_force * frame_time;
+        current_speed -= friction_force * frame_time * 0.5;
         if (current_speed < 0) {
             current_speed = 0;
         }
