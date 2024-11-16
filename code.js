@@ -85,7 +85,7 @@ function draw_wheel() {
                 ctx.textAlign = "right"
                 ctx.fillStyle = "white"
                 ctx.font = "40px Arial"
-                ctx.fillText(entry, radius - 10, 10, radius - 20)
+                ctx.fillText(entry, radius - 10, 10, radius * 0.8)
                 ctx.stroke()
                 ctx.restore()
 
