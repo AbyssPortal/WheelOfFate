@@ -40,7 +40,6 @@ function rig_speed(desired_angle, loop_count) { // 😈😈😈😈😈
 
 function draw_wheel() {
     const size = Math.min(window.innerWidth, window.innerHeight)
-    console.log(size)
     wheelCanvas.height = size * 0.75
     wheelCanvas.width = size * 0.75
     if (wheelCanvas.getContext) {
