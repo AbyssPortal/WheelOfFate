@@ -21,9 +21,6 @@ function calculate_winner() {
 
 const wheelCanvas = document.getElementById('wheelCanvas')
 
-
-
-
 function rig_speed(desired_angle, loop_count) { // 😈😈😈😈😈
     if (desired_angle < current_angle) {
         desired_angle += Math.PI * 2
