@@ -63,6 +63,7 @@ function draw_wheel() {
             entry = wheel_entries[i]
             ctx.beginPath()
             ctx.arc(centerX, centerY, radius, 2 * Math.PI * (i) / count + current_angle, 2 * Math.PI * (i + 1) / count + current_angle, false)
+            const arc_angle = 2 * Math.PI * (i + 1) / count + current_angle - ( 2 * Math.PI * (i) / count + current_angle);
             if (count != 1) {
                 ctx.lineTo(centerX, centerY)
             }
@@ -79,12 +80,14 @@ function draw_wheel() {
             ctx.stroke()
             {
                 ctx.save()
+                console.log(arc_angle)
+                const text_size = Math.round(Math.min(40, Math.ceil(arc_angle*radius*0.2)))
                 ctx.translate(centerX, centerY)
                 ctx.rotate(2 * Math.PI * (i + 0.5) / count + current_angle)
                 ctx.textAlign = "right"
                 ctx.fillStyle = "white"
-                ctx.font = "40px Arial"
-                ctx.fillText(entry, radius - 10, 10, radius * 0.8)
+                ctx.font = text_size + "px Arial"
+                ctx.fillText(entry, radius - 10, text_size/2, radius * 0.8 - 10)
                 ctx.stroke()
                 ctx.restore()
 
@@ -109,6 +112,7 @@ var lastLoop = new Date()  // This is used to calculate the time between frames
 const winner_label = document.getElementById('winner')
 
 let last_winner = 0
+let moving_last_frame = false;
 
 function update_wheel() {
     var thisLoop = new Date()
@@ -121,6 +125,9 @@ function update_wheel() {
         if (current_speed < 0) {
             current_speed = 0
         }
+    }
+    if (moving_last_frame && current_speed == 0) {
+        
     }
     draw_wheel()
     if (calculate_winner() != last_winner) {
