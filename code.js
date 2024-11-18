@@ -87,7 +87,6 @@ function draw_wheel() {
             ctx.stroke()
             {
                 ctx.save()
-                console.log(arc_angle)
                 const text_size = (isNaN(request_font_size)) ? Math.round(Math.min(40, Math.ceil(arc_angle*radius*0.2))) : request_font_size
                 ctx.translate(centerX, centerY)
                 ctx.rotate(2 * Math.PI * (i + 0.5) / count + current_angle)
@@ -131,10 +130,13 @@ function update_wheel() {
         current_speed -= friction_force * frame_time * 0.5
         if (current_speed < 0) {
             current_speed = 0
+        } else {
+            moving_last_frame = true
         }
     }
     if (moving_last_frame && current_speed == 0) {
-        
+        moving_last_frame = false
+        alert("the winner is " + wheel_entries[calculate_winner()])
     }
     draw_wheel()
     if (calculate_winner() != last_winner) {
