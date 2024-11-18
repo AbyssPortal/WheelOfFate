@@ -33,10 +33,23 @@
 
 <body>
     <h1>Welcome to Wheel of Fate</h1>
-    <h2> the winner is: <a id="winner"></a></h2>
+    <div>
+        <h2> the winner is: <a id="winner"></a></h2>
+    </div>
+    <div>
+        <textarea id="font_size_textarea">font size (optional)</textarea>
+        <script>
+            document.getElementById('font_size_textarea').oninput = function () {
+                request_font_size = parseInt(this.value)
+            };
+        </script>
+    </div>
+
+
     <div class="container">
-        <canvas id="wheelCanvas" width="500" height="500"></canvas> 
+        <canvas id="wheelCanvas" width="500" height="500"></canvas>
         <textarea id="list" rows="20" cols="50">heads&#10;tails</textarea>
+
     </div>
     <script>
         document.getElementById('wheelCanvas').onclick = function () {

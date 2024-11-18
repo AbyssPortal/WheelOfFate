@@ -36,7 +36,14 @@ function rig_speed(desired_angle, loop_count) { // 😈😈😈😈😈
     */
     let desired_speed = Math.sqrt(2 * friction_force * desired_difference)
     return desired_speed
+
+
 }
+
+
+let request_font_size = NaN
+const font_size_textarea = document.getElementById('font_size_textarea')
+
 
 function draw_wheel() {
     const size = Math.min(window.innerWidth, window.innerHeight)
@@ -81,7 +88,7 @@ function draw_wheel() {
             {
                 ctx.save()
                 console.log(arc_angle)
-                const text_size = Math.round(Math.min(40, Math.ceil(arc_angle*radius*0.2)))
+                const text_size = (isNaN(request_font_size)) ? Math.round(Math.min(40, Math.ceil(arc_angle*radius*0.2))) : request_font_size
                 ctx.translate(centerX, centerY)
                 ctx.rotate(2 * Math.PI * (i + 0.5) / count + current_angle)
                 ctx.textAlign = "right"
